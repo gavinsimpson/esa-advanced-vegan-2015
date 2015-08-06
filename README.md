@@ -3,7 +3,7 @@
 Welcome to the GitHub repository for the workshop on advanced community ecology analyses using the `vegan` package at ESA 2015.
 
 **Location and time:**    
-Saturday, August 8, 2015    
+Sunday, August 9, 2015    
 08:00 -- 11:30 AM     
 Location: Room **Peale B**, Hilton     
 
