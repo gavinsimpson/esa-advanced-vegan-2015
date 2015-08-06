@@ -4,8 +4,8 @@ Welcome to the GitHub repository for the workshop on advanced community ecology 
 
 **Location and time:**    
 Saturday, August 8, 2015    
-12:00 PM - 5:00 PM     
-Location: Room **306**, Baltimore Convention Center     
+08:00 -- 11:30 AM     
+Location: Room **Peale B**, Hilton     
 
 ## Organizers
 [Gavin Simpson](http://www.fromthebottomoftheheap.net/) and [Naupaka Zimmerman](http://naupaka.net).
