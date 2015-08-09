@@ -86,12 +86,12 @@
 \usepackage{booktabs}
 
 % Creative Commons Icons
-\usepackage[scale=2]{ccicons}
+\usepackage[scale=1]{ccicons}
 
 \newenvironment{centrefig}{\begin{figure}\centering}{\end{figure}}
 \newcommand{\columnsbegin}{\begin{columns}}
 \newcommand{\columnsend}{\end{columns}}
-\newcommand{\centreFigBegin}{\begin{columns}\centering}
+\newcommand{\centreFigBegin}{\begin{figure}\centering}
 \newcommand{\centreFigEnd}{\end{figure}}
 
 
@@ -232,7 +232,7 @@ Eigenvalues for unconstrained axes:
 \item
   \textbf{\texttt{\$tot.chi}} total inertia, sum of Eigenvalues
 \item
-  \textbf{\texttt{\$pCCA}} Conditioned (partialled out) components
+  \textbf{\texttt{\$pCCA}} Conditioned (partial-ed out) components
 \item
   \textbf{\texttt{\$CCA}} Constrained components
 \item
@@ -567,7 +567,7 @@ Lots of rules of thumb
   VIF \textgreater{}= 20 indicates \emph{strong collinearity} in
   constraints
 \item
-  VIF \textgreater{}= 10 potnetially of concern \& should be looked at
+  VIF \textgreater{}= 10 potentially of concern \& should be looked at
 \end{itemize}
 
 Computed via \texttt{vif.cca()}
@@ -957,7 +957,7 @@ A number of types of test can be envisaged
 
 The first is the default in \texttt{anova()}
 
-The other three can be selected via the argument \texttt{method}
+The other three can be selected via the argument \texttt{by}
 
 \end{frame}
 
@@ -1563,17 +1563,18 @@ Canoco has had restricted permutations for a \emph{long} time.
 \textbf{vegan} has only recently caught up \& we're not (quite) there
 yet
 
-\textbf{vegan} still only knows how to completely randomise data or
-completely randomise within blocks (called \texttt{strata} in
+\textbf{vegan} used to only know how to completely randomise data or
+completely randomise within blocks (via \texttt{strata} in
 \textbf{vegan})
 
 The newish package \textbf{permute} grew out of initial code in the
 \textbf{vegan} repository to generate the sorts of restricted
 permutations available in Canoco
 
-We have fully integrated \textbf{permute} into \textbf{vegan}\ldots{}
+We have now fully integrated \textbf{permute} into
+\textbf{vegan}\ldots{}
 
-\textbf{vegan} depends on \textbf{permute} so you should have it already
+\textbf{vegan} depends on \textbf{permute} so it will already be
 installed \& loaded when using \textbf{vegan}
 
 \end{frame}
@@ -1581,7 +1582,7 @@ installed \& loaded when using \textbf{vegan}
 \begin{frame}{Restricted permutations with permute}
 
 \textbf{permute} follows Canoco closely --- at the chiding of Cajo ter
-Braak when it didn't do what he wanted !
+Braak when it didn't do what he wanted!
 
 Samples can be thought of as belonging to three levels of a hierarchy
 
@@ -1604,8 +1605,8 @@ samples
 \begin{frame}{Restricted permutations with permute}
 
 Blocks are \emph{never} permuted; if defined, only plots or samples
-\emph{within} the blocks get shuffled \& samples never swapped between
-blocks
+\emph{within} the blocks get shuffled \& samples are \textbf{never}
+swapped between blocks
 
 Plots or samples within plots, or both can be permuted following one of
 four simple permutation types
@@ -1639,7 +1640,7 @@ within blocks
 Blocks form groups of samples that are never permuted between blocks,
 only within blocks
 
-Using blocks you can achieve what the \texttt{strata} argument does now
+Using blocks you can achieve what the \texttt{strata} argument used to
 in \textbf{vegan}; needs to be a factor variable
 
 The variation \emph{between} blocks should be excluded from the test;
@@ -1687,21 +1688,11 @@ significance of a trend
 spatial grids}
 
 \columnsbegin
-\column{0.7\linewidth} - The trick of cyclic shifts can be extended to
-two dimensions for a regular spatial grid arrangement of points
+\column{0.5\linewidth} The trick of cyclic shifts can be extended to two
+dimensions for a regular spatial grid arrangement of points
 
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
-  Now shifts are \emph{toroidal} as we join the end point in the
-  \emph{x} direction together and in the \emph{y} direction together
-\end{itemize}
-
-\scriptsize
-
-\normalsize
-
-\column{0.3\linewidth}
+Now shifts are \emph{toroidal} as we join the end point in the \emph{x}
+direction together and in the \emph{y} direction together
 
 \scriptsize
 
@@ -1719,6 +1710,11 @@ two dimensions for a regular spatial grid arrangement of points
 \end{verbatim}
 
 \normalsize
+
+\column{0.5\linewidth}
+\includegraphics[width=\linewidth]{Toroidal_coord}
+
+Source: Dave Burke, Wikimedia \ccby
 \columnsend
 
 \end{frame}
@@ -1739,7 +1735,7 @@ Split-plot designs are hierarchical with two levels of units
 
 Can permute one or both of these but whole-plots must be of equal size
 
-Essentially allows more than one error stratum to be anlyzed
+Essentially allows more than one error stratum to be analyzed
 
 Test effect of constraints that vary \emph{between} whole plots by
 permuting the whole-plots whilst retaining order of split-splots
@@ -1768,7 +1764,7 @@ shift can be applied to each time series (within each whole-plot)
 \begin{frame}{Restricted permutations with permute \textbar{} mirroring}
 
 (Without wanting to get \emph{too} technical) Mirroring in restricted
-permutations allows for isotropy in dependences by reflecting the
+permutations allows for isotropy in dependencies by reflecting the
 ordering of samples in time or spatial dimensions
 
 For a linear transect, technically the autocorrelation at lag \emph{h}
@@ -1792,7 +1788,7 @@ permutations}
 Using restricted permutations can severely reduce the size of the set of
 allowed permutations
 
-As the minimum \emph{p} value obtaininable is \(1 / np\) where \(np\) is
+As the minimum \emph{p} value obtainable is \(1 / np\) where \(np\) is
 number of allowed permutations (including the observed) this can impact
 the ability to detect signal/pattern
 
@@ -1949,7 +1945,8 @@ Time series within 3 plots, 10 observation each
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{plt <-}\StringTok{ }\KeywordTok{gl}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{10}\NormalTok{)}
-\NormalTok{h <-}\StringTok{ }\KeywordTok{how}\NormalTok{(}\DataTypeTok{within =} \KeywordTok{Within}\NormalTok{(}\DataTypeTok{type =} \StringTok{"series"}\NormalTok{), }\DataTypeTok{plots =} \KeywordTok{Plots}\NormalTok{(}\DataTypeTok{strata =} \NormalTok{plt))}
+\NormalTok{h <-}\StringTok{ }\KeywordTok{how}\NormalTok{(}\DataTypeTok{within =} \KeywordTok{Within}\NormalTok{(}\DataTypeTok{type =} \StringTok{"series"}\NormalTok{),}
+         \DataTypeTok{plots =} \KeywordTok{Plots}\NormalTok{(}\DataTypeTok{strata =} \NormalTok{plt))}
 \KeywordTok{set.seed}\NormalTok{(}\DecValTok{4}\NormalTok{)}
 \NormalTok{p <-}\StringTok{ }\KeywordTok{shuffle}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DataTypeTok{control =} \NormalTok{h)}
 \KeywordTok{do.call}\NormalTok{(}\StringTok{"rbind"}\NormalTok{, }\KeywordTok{split}\NormalTok{(p, plt)) ## look at perms in context}
@@ -1978,7 +1975,8 @@ each
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{plt <-}\StringTok{ }\KeywordTok{gl}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{10}\NormalTok{)}
-\NormalTok{h <-}\StringTok{ }\KeywordTok{how}\NormalTok{(}\DataTypeTok{within =} \KeywordTok{Within}\NormalTok{(}\DataTypeTok{type =} \StringTok{"series"}\NormalTok{, }\DataTypeTok{constant =} \OtherTok{TRUE}\NormalTok{), }\DataTypeTok{plots =} \KeywordTok{Plots}\NormalTok{(}\DataTypeTok{strata =} \NormalTok{plt))}
+\NormalTok{h <-}\StringTok{ }\KeywordTok{how}\NormalTok{(}\DataTypeTok{within =} \KeywordTok{Within}\NormalTok{(}\DataTypeTok{type =} \StringTok{"series"}\NormalTok{, }\DataTypeTok{constant =} \OtherTok{TRUE}\NormalTok{),}
+         \DataTypeTok{plots =} \KeywordTok{Plots}\NormalTok{(}\DataTypeTok{strata =} \NormalTok{plt))}
 \KeywordTok{set.seed}\NormalTok{(}\DecValTok{4}\NormalTok{)}
 \NormalTok{p <-}\StringTok{ }\KeywordTok{shuffle}\NormalTok{(}\DecValTok{30}\NormalTok{, }\DataTypeTok{control =} \NormalTok{h)}
 \KeywordTok{do.call}\NormalTok{(}\StringTok{"rbind"}\NormalTok{, }\KeywordTok{split}\NormalTok{(p, plt)) ## look at perms in context}
@@ -1999,7 +1997,9 @@ each
 \begin{frame}[fragile]{Restricted permutations with permute \textbar{}
 worked example with vegan}
 
-Here by dragons
+Now we've seen how to drive \textbf{permute}, we can use the same
+\texttt{how()} commands to set up permutation designs within
+\textbf{vegan} functions
 
 \scriptsize
 
@@ -2028,18 +2028,47 @@ Here by dragons
 \begin{frame}[fragile]{Restricted permutations with permute \textbar{}
 worked example with vegan}
 
-\tiny
+\scriptsize
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\NormalTok{## hypothesis 1}
-\NormalTok{c1 <-}\StringTok{ }\KeywordTok{rda}\NormalTok{(spp ~}\StringTok{ }\NormalTok{year +}\StringTok{ }\NormalTok{year:mowing +}\StringTok{ }\NormalTok{year:fertilizer +}
-\StringTok{          }\NormalTok{year:removal +}\StringTok{ }\KeywordTok{Condition}\NormalTok{(plotid), }\DataTypeTok{data =} \NormalTok{env)}
+\NormalTok{c1 <-}\StringTok{ }\KeywordTok{rda}\NormalTok{(spp ~}\StringTok{ }\NormalTok{year +}\StringTok{ }\NormalTok{year:mowing +}\StringTok{ }\NormalTok{year:fertilizer +}\StringTok{ }\NormalTok{year:removal +}\StringTok{ }\KeywordTok{Condition}\NormalTok{(plotid), }\DataTypeTok{data =} \NormalTok{env)}
+\NormalTok{h <-}\StringTok{ }\KeywordTok{how}\NormalTok{(}\DataTypeTok{within =} \KeywordTok{Within}\NormalTok{(}\DataTypeTok{type =} \StringTok{"none"}\NormalTok{), }\DataTypeTok{plots =} \KeywordTok{Plots}\NormalTok{(}\DataTypeTok{strata =} \NormalTok{env$plotid, }\DataTypeTok{type =} \StringTok{"free"}\NormalTok{))}
+\NormalTok{h}
+\end{Highlighting}
+\end{Shaded}
 
-\NormalTok{h <-}\StringTok{ }\KeywordTok{how}\NormalTok{(}\DataTypeTok{within =} \KeywordTok{Within}\NormalTok{(}\DataTypeTok{type =} \StringTok{"none"}\NormalTok{),}
-         \DataTypeTok{plots =} \KeywordTok{Plots}\NormalTok{(}\DataTypeTok{strata =} \NormalTok{env$plotid, }\DataTypeTok{type =} \StringTok{"free"}\NormalTok{))}
+\begin{verbatim}
+
+Permutation Design:
+
+Blocks:
+  Defined by: none
+
+Plots:
+  Plots: env$plotid
+  Permutation type: free
+  Mirrored?: No
+
+Within Plots:
+  Permutation type: none
+
+Permutation details:
+  Number of permutations requested: 199
+  Max. number of permutations allowed: 9999
+  Evaluate all permutations?: No.  Activation limit: 99
+\end{verbatim}
+
+\end{frame}
+
+\begin{frame}[fragile]{Restricted permutations with permute \textbar{}
+worked example with vegan}
+
+\scriptsize
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \KeywordTok{set.seed}\NormalTok{(}\DecValTok{42}\NormalTok{)}
-
 \KeywordTok{anova}\NormalTok{(c1, }\DataTypeTok{permutations =} \NormalTok{h, }\DataTypeTok{model =} \StringTok{"reduced"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2058,8 +2087,16 @@ Residual 90   556.30
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \end{verbatim}
 
+\end{frame}
+
+\begin{frame}[fragile]{Restricted permutations with permute \textbar{}
+worked example with vegan}
+
+\scriptsize
+
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{24}\NormalTok{)}
 \KeywordTok{anova}\NormalTok{(c1, }\DataTypeTok{permutations =} \NormalTok{h, }\DataTypeTok{model =} \StringTok{"reduced"}\NormalTok{, }\DataTypeTok{by =} \StringTok{"axis"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -2074,9 +2111,9 @@ Number of permutations: 199
 Model: rda(formula = spp ~ year + year:mowing + year:fertilizer + year:removal + Condition(plotid), data = env)
          Df Variance       F Pr(>F)   
 RDA1      1    89.12 14.4173  0.005 **
-RDA2      1    34.28  5.5458  0.010 **
+RDA2      1    34.28  5.5458  0.005 **
 RDA3      1    26.52  4.2900  0.010 **
-RDA4      1     8.94  1.4458  0.625   
+RDA4      1     8.94  1.4458  0.650   
 Residual 90   556.30                  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
@@ -2086,58 +2123,18 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 \end{frame}
 
-\begin{frame}[fragile]{Restricted permutations with permute \textbar{}
-worked example with vegan}
+\begin{frame}{Re-use}
 
-\tiny
+Copyright \textcopyright (2015) Gavin L. Simpson \emph{Some Rights
+Reserved}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{## hypothesis 2}
-\NormalTok{c2 <-}\StringTok{ }\KeywordTok{rda}\NormalTok{(spp ~}\StringTok{ }\NormalTok{year:mowing +}\StringTok{ }\NormalTok{year:fertilizer +}\StringTok{ }\NormalTok{year:removal +}
-\StringTok{          }\KeywordTok{Condition}\NormalTok{(year +}\StringTok{ }\NormalTok{plotid), }\DataTypeTok{data =} \NormalTok{env)}
-\KeywordTok{anova}\NormalTok{(c2, }\DataTypeTok{permutations =} \NormalTok{h, }\DataTypeTok{model =} \StringTok{"reduced"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
+Unless indicated otherwise, this slide deck is licensed under a
+\href{http://creativecommons.org/licenses/by/4.0/}{Creative Commons
+Attribution 4.0 International License}.
 
-\begin{verbatim}
-Permutation test for rda under reduced model
-Plots: env$plotid, plot permutation: free
-Permutation: none
-Number of permutations: 199
-
-Model: rda(formula = spp ~ year:mowing + year:fertilizer + year:removal + Condition(year + plotid), data = env)
-         Df Variance      F Pr(>F)   
-Model     3    99.24 5.3517  0.005 **
-Residual 90   556.30                 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{anova}\NormalTok{(c2, }\DataTypeTok{permutations =} \NormalTok{h, }\DataTypeTok{model =} \StringTok{"reduced"}\NormalTok{, }\DataTypeTok{by =} \StringTok{"axis"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Permutation test for rda under reduced model
-Marginal tests for axes
-Plots: env$plotid, plot permutation: free
-Permutation: none
-Number of permutations: 199
-
-Model: rda(formula = spp ~ year:mowing + year:fertilizer + year:removal + Condition(year + plotid), data = env)
-         Df Variance      F Pr(>F)   
-RDA1      1    54.14 8.7595  0.005 **
-RDA2      1    34.28 5.5458  0.005 **
-RDA3      1    10.82 1.7499  0.440   
-Residual 90   556.30                 
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\normalsize
+\begin{center}
+  \ccby
+\end{center}
 
 \end{frame}
 

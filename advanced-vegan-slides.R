@@ -158,14 +158,16 @@ args(how)
 
 ## ----ts-perm-example1----------------------------------------------------
 plt <- gl(3, 10)
-h <- how(within = Within(type = "series"), plots = Plots(strata = plt))
+h <- how(within = Within(type = "series"),
+         plots = Plots(strata = plt))
 set.seed(4)
 p <- shuffle(30, control = h)
 do.call("rbind", split(p, plt)) ## look at perms in context
 
 ## ----ts-perm-example2----------------------------------------------------
 plt <- gl(3, 10)
-h <- how(within = Within(type = "series", constant = TRUE), plots = Plots(strata = plt))
+h <- how(within = Within(type = "series", constant = TRUE),
+         plots = Plots(strata = plt))
 set.seed(4)
 p <- shuffle(30, control = h)
 do.call("rbind", split(p, plt)) ## look at perms in context
@@ -186,21 +188,15 @@ spp <- spp[, -1]
 env <- transform(env, year = as.numeric(as.character(year)))
 
 ## ----worked-example-devel-2----------------------------------------------
-## hypothesis 1
-c1 <- rda(spp ~ year + year:mowing + year:fertilizer +
-          year:removal + Condition(plotid), data = env)
+c1 <- rda(spp ~ year + year:mowing + year:fertilizer + year:removal + Condition(plotid), data = env)
+h <- how(within = Within(type = "none"), plots = Plots(strata = env$plotid, type = "free"))
+h
 
-h <- how(within = Within(type = "none"),
-         plots = Plots(strata = env$plotid, type = "free"))
+## ----worked-example-devel-2a---------------------------------------------
 set.seed(42)
-
 anova(c1, permutations = h, model = "reduced")
-anova(c1, permutations = h, model = "reduced", by = "axis")
 
-## ----worked-example-devel-3----------------------------------------------
-## hypothesis 2
-c2 <- rda(spp ~ year:mowing + year:fertilizer + year:removal +
-          Condition(year + plotid), data = env)
-anova(c2, permutations = h, model = "reduced")
-anova(c2, permutations = h, model = "reduced", by = "axis")
+## ----worked-example-devel-2b---------------------------------------------
+set.seed(24)
+anova(c1, permutations = h, model = "reduced", by = "axis")
 

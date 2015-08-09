@@ -60,7 +60,6 @@ cca1
 
 RDA is the constrained form of PCA; fitted using `rda()`.
 
-
 \tiny
 ```{r rda-model}
 rda1 <- rda(varespec ~ ., data = varechem)
@@ -84,7 +83,7 @@ rda1
  * **`$rowsum`** the row sums
  * **`$colsum`** the column sums
  * **`$tot.chi`** total inertia, sum of Eigenvalues
- * **`$pCCA`** Conditioned (partialled out) components
+ * **`$pCCA`** Conditioned (partial-ed out) components
  * **`$CCA`** Constrained components
  * **`$CA`** Unconstrained components
  * **`$method`** Ordination method used
@@ -128,7 +127,6 @@ To extract a range of scores from  a fitted ordination use `scores()`
 
 ## Extracting axis scores
 
-
 \scriptsize
 ```{r scores}
 str(scores(cca1, choices = 1:4, display = c("species","sites")), max = 1)
@@ -167,7 +165,6 @@ scores(cca1, choices = 1:2, display = "species", scaling = 3)
 Argument `Z` is used for a data frame of variables to partial out
 
 Or with the formula interface use the `Condition()` function
-
 
 \scriptsize
 ```{r partial-ordination}
@@ -210,9 +207,7 @@ The formula interface allows you to create interaction or quadratic terms easily
 
 It also handles factor or class constraints automatically unlike the basic interface
 
-
 ## Building constrained ordination models
-
 
 \scriptsize
 ```{r cca-model-build1}
@@ -243,7 +238,7 @@ VIF is a measure of how much the variance of $\hat{\beta}_j$ is inflated by pres
 Lots of rules of thumb
 
  * VIF >= 20 indicates *strong collinearity* in constraints
- * VIF >= 10 potnetially of concern & should be looked at
+ * VIF >= 10 potentially of concern & should be looked at
 
 Computed via `vif.cca()`
 
@@ -253,7 +248,6 @@ Computed via `vif.cca()`
 
  1. Define an upper and lower model scope, say the full model and the null model
  2. To step from the lower scope or null model we use
-
 
 \scriptsize
 ```{r stepwise-1}
@@ -453,7 +447,6 @@ Example & data taken from Leps & Smilauer, Case Study 2
 
 Spring fen meadow vegetation in westernmost Carpathian mountains
 
-
 \scriptsize
 ```{r meadows-setup}
 ## load vegan
@@ -480,7 +473,6 @@ anova(m1)
 
 ## Constrained ordination worked example | spring meadow vegetation
 
-
 \scriptsize
 ```{r meadows-cca-full-triplot, fig.height = 5, crop.plot = TRUE, out.width = "0.5\\linewidth"}
 plot(m1)
@@ -500,7 +492,6 @@ m2
 
 ## Constrained ordination worked example | spring meadow vegetation
 
-
 \scriptsize
 ```{r meadows-cca-reduced-triplot, fig.height = 5, crop.plot = TRUE, out.width = "0.5\\linewidth"}
 plot(m2)
@@ -508,7 +499,6 @@ plot(m2)
 \normalsize
 
 ## Constrained ordination worked example | spring meadow vegetation
-
 
 \scriptsize
 ```{r meadows-cca-anova}
@@ -520,7 +510,6 @@ m2$anova
 
 Alternative is RDA with a transformation
 
-
 \scriptsize
 ```{r meadows-rda}
 spph <- decostand(spp, method = "hellinger")
@@ -531,7 +520,6 @@ m4 <- ordistep(lwr, scope = formula(m3), trace = FALSE)
 \normalsize
 
 ## Constrained ordination worked example | spring meadow vegetation
-
 
 \scriptsize
 ```{r meadows-rda-reduced-triplot, fig.height = 5, crop.plot = TRUE, out.width = "0.5\\linewidth"}
@@ -571,7 +559,6 @@ Which goodness of fit measure is returned is controlled by argument `statistic`
 
 ## Diagnostics for constrained ordinations | goodness of fit
 
-
 \scriptsize
 ```{r goodness}
 head(goodness(mods))
@@ -588,7 +575,6 @@ Same two types of  measure available by argument `statistic`
  * `statistic = "explained` (default) gives the decomposition in terms of variance
  * `statistic = "distance"` gives decomposition in terms of the the residual distance
  * Can output as proportions of total via `proportion = TRUE`
-
 
 \scriptsize
 ```{r inertcomp}
@@ -609,7 +595,6 @@ A *poor* measure of goodness of fit. Sensitive to
 
 Better models can have poorer species-environment correlations
 
-
 \scriptsize
 ```{r spenvcor}
 spenvcor(mods)
@@ -626,7 +611,6 @@ Another *poor* diagnostic
  * focuses on a single constraint--axis combination at a time
 
 Vector fitting (`envfit()`) or biplot scores (`scores(model, display = "bp")`) are better alternatives
-
 
 \scriptsize
 ```{r intersetcor}
@@ -658,17 +642,17 @@ Trick is to shuffle the data whilst preserving that dependence
 
 Canoco has had restricted permutations for a *long* time. **vegan** has only recently caught up & we're not (quite) there yet
 
-**vegan** still only knows how to completely randomise data or completely randomise within blocks (called `strata` in **vegan**)
+**vegan** used to only know how to completely randomise data or completely randomise within blocks (via `strata` in **vegan**)
 
 The newish package **permute** grew out of initial code in the **vegan** repository to generate the sorts of restricted permutations available in Canoco
 
-We have fully integrated **permute** into **vegan**...
+We have now fully integrated **permute** into **vegan**...
 
-**vegan** depends on **permute** so you should have it already installed & loaded when using **vegan**
+**vegan** depends on **permute** so it will already be installed & loaded when using **vegan**
 
 ## Restricted permutations with permute
 
-**permute** follows Canoco closely --- at the chiding of Cajo ter Braak when it didn't do what he wanted !
+**permute** follows Canoco closely --- at the chiding of Cajo ter Braak when it didn't do what he wanted!
 
 Samples can be thought of as belonging to three levels of a hierarchy
 
@@ -680,7 +664,7 @@ Blocks define groups of plots, each of which can contain groups of samples
 
 ## Restricted permutations with permute
 
-Blocks are *never* permuted; if defined, only plots or samples *within* the blocks get shuffled & samples never swapped between blocks
+Blocks are *never* permuted; if defined, only plots or samples *within* the blocks get shuffled & samples are **never** swapped between blocks
 
 Plots or samples within plots, or both can be permuted following one of four simple permutation types
 
@@ -698,7 +682,7 @@ Blocks are a random factor that does not interact with factors that vary within 
 
 Blocks form groups of samples that are never permuted between blocks, only within blocks
 
-Using blocks you can achieve what the `strata` argument does now in **vegan**; needs to be a factor variable
+Using blocks you can achieve what the `strata` argument used to in **vegan**; needs to be a factor variable
 
 The variation *between* blocks should be excluded from the test; **permute** doesn't do this for you!
 
@@ -723,11 +707,10 @@ shuffle(10, control = how(within = Within(type = "series")))
 ## Restricted permutations with permute | spatial grids
 
 \columnsbegin
-\column{0.7\linewidth}
-- The trick of cyclic shifts can be extended to two dimensions for a regular spatial grid arrangement of points
+\column{0.5\linewidth}
+The trick of cyclic shifts can be extended to two dimensions for a regular spatial grid arrangement of points
 
-- Now shifts are *toroidal* as we join the end point in the *x* direction together and in the *y* direction together
-
+Now shifts are *toroidal* as we join the end point in the *x* direction together and in the *y* direction together
 
 \scriptsize
 ```{r set-up-toroidal, include = FALSE}
@@ -735,16 +718,16 @@ set.seed(4)
 h <- how(within = Within(type = "grid", ncol = 3, nrow = 3))
 perm <- shuffle(9, control = h)
 ```
-\normalsize
 
-\column{0.3\linewidth}
-
-
-\scriptsize
 ```{r show-toroidal}
 matrix(perm, ncol = 3)
 ```
 \normalsize
+
+\column{0.5\linewidth}
+\includegraphics[width=\linewidth]{Toroidal_coord}
+
+Source: Dave Burke, Wikimedia \ccby
 \columnsend
 
 ## Restricted permutations with permute | whole-plots & split-plots I
@@ -756,7 +739,7 @@ Split-plot designs are hierarchical with two levels of units
 
 Can permute one or both of these but whole-plots must be of equal size
 
-Essentially allows more than one error stratum to be anlyzed
+Essentially allows more than one error stratum to be analyzed
 
 Test effect of constraints that vary *between* whole plots by permuting the whole-plots whilst retaining order of split-splots (samples) within the whole-plots
 
@@ -770,7 +753,7 @@ If the split-plots are parallel time series & `time` is an autocorrelated error 
 
 ## Restricted permutations with permute | mirroring
 
-(Without wanting to get *too* technical) Mirroring in restricted permutations allows for isotropy in dependences by reflecting the ordering of samples in time or spatial dimensions
+(Without wanting to get *too* technical) Mirroring in restricted permutations allows for isotropy in dependencies by reflecting the ordering of samples in time or spatial dimensions
 
 For a linear transect, technically the autocorrelation at lag *h* is equal to that at lag -*h* (also in a trend-free time series)
 
@@ -784,7 +767,7 @@ Using `mirror = TRUE` then can double (time series, linear transects) or quadrup
 
 Using restricted permutations can severely reduce the size of the set of allowed permutations
 
-As the minimum *p* value obtaininable is $1 / np$ where $np$ is number of allowed permutations (including the observed) this can impact the ability to detect signal/pattern
+As the minimum *p* value obtainable is $1 / np$ where $np$ is number of allowed permutations (including the observed) this can impact the ability to detect signal/pattern
 
 If we don't want mirroring
 
@@ -813,7 +796,6 @@ We sample from the permutation scheme with
  2. `plots`  --- takes input from helper `Plots()`
  3. `blocks` --- takes a factor variable as input
  
-
 \scriptsize
 ```{r}
 plt <- gl(3, 10)
@@ -824,7 +806,6 @@ h <- how(within = Within(type = "series"), plots = Plots(strata = plt))
 ## Restricted permutations with permute | designing permutation schemes
 
 Helper functions make it easy to change one or a few aspects of permutation scheme, rest left at defaults
-
 
 \scriptsize
 ```{r helper-funs}
@@ -840,7 +821,6 @@ args(Plots)
  * `complete` should we enumerate the entire set of permutations?
  * `minperm` lower bound on the size of the set of permutations at & below which we turn on complete enumeration
 
-
 \scriptsize
 ```{r how-args}
 args(how)
@@ -851,11 +831,11 @@ args(how)
 
 Time series within 3 plots, 10 observation each
 
-
 \scriptsize
 ```{r ts-perm-example1}
 plt <- gl(3, 10)
-h <- how(within = Within(type = "series"), plots = Plots(strata = plt))
+h <- how(within = Within(type = "series"),
+         plots = Plots(strata = plt))
 set.seed(4)
 p <- shuffle(30, control = h)
 do.call("rbind", split(p, plt)) ## look at perms in context
@@ -869,7 +849,8 @@ Time series within 3 plots, 10 observation each, same permutation within each
 \scriptsize
 ```{r ts-perm-example2}
 plt <- gl(3, 10)
-h <- how(within = Within(type = "series", constant = TRUE), plots = Plots(strata = plt))
+h <- how(within = Within(type = "series", constant = TRUE),
+         plots = Plots(strata = plt))
 set.seed(4)
 p <- shuffle(30, control = h)
 do.call("rbind", split(p, plt)) ## look at perms in context
@@ -878,7 +859,7 @@ do.call("rbind", split(p, plt)) ## look at perms in context
 
 ## Restricted permutations with permute | worked example with vegan
 
-Here by dragons
+Now we've seen how to drive **permute**, we can use the same `how()` commands to set up permutation designs within **vegan** functions
 
 \scriptsize
 ```{r worked-example-devel-1}
@@ -900,32 +881,38 @@ env <- transform(env, year = as.numeric(as.character(year)))
 
 ## Restricted permutations with permute | worked example with vegan
 
-
-\tiny
+\scriptsize
 ```{r worked-example-devel-2}
-## hypothesis 1
-c1 <- rda(spp ~ year + year:mowing + year:fertilizer +
-          year:removal + Condition(plotid), data = env)
+c1 <- rda(spp ~ year + year:mowing + year:fertilizer + year:removal + Condition(plotid), data = env)
+h <- how(within = Within(type = "none"), plots = Plots(strata = env$plotid, type = "free"))
+h
+```
 
-h <- how(within = Within(type = "none"),
-         plots = Plots(strata = env$plotid, type = "free"))
+## Restricted permutations with permute | worked example with vegan
+
+\scriptsize
+```{r worked-example-devel-2a}
 set.seed(42)
-
 anova(c1, permutations = h, model = "reduced")
+```
+
+## Restricted permutations with permute | worked example with vegan
+
+\scriptsize
+```{r worked-example-devel-2b}
+set.seed(24)
 anova(c1, permutations = h, model = "reduced", by = "axis")
 ```
 \normalsize
 
-## Restricted permutations with permute | worked example with vegan
+## Re-use
 
-\tiny
-```{r worked-example-devel-3}
-## hypothesis 2
-c2 <- rda(spp ~ year:mowing + year:fertilizer + year:removal +
-          Condition(year + plotid), data = env)
-anova(c2, permutations = h, model = "reduced")
-anova(c2, permutations = h, model = "reduced", by = "axis")
-```
-\normalsize
+Copyright \textcopyright (2015) Gavin L. Simpson *Some Rights Reserved*
+
+Unless indicated otherwise, this slide deck is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+
+\begin{center}
+  \ccby
+\end{center}
 
 ## References
