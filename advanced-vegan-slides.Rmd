@@ -379,19 +379,6 @@ set.seed(42)
 
 ## Permutation tests in vegan: `anova()`
 
- * `anova()` will continue permuting only as long as it is uncertain whether the the $p$-value is above or below the chosen threshold (say $p = 0.05$)
- * If the function is sure the permuted $p$ is above the threshold `anova()` may return after only a few hundred permutations
- * In other cases many hundreds or thousands of permutations may be required to say whether the model is above or below the threshold
- * In the example, 1599 permutations were required
-
-\tiny
-```{r cca-anova-2}
-perm
-```
-\normalsize
-
-## Permutation tests in vegan: `anova()`
-
  * `anova.cca()` has a number of arguments
 
 \tiny

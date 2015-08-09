@@ -896,49 +896,6 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 \begin{itemize}
 \itemsep1pt\parskip0pt\parsep0pt
 \item
-  \texttt{anova()} will continue permuting only as long as it is
-  uncertain whether the the \(p\)-value is above or below the chosen
-  threshold (say \(p = 0.05\))
-\item
-  If the function is sure the permuted \(p\) is above the threshold
-  \texttt{anova()} may return after only a few hundred permutations
-\item
-  In other cases many hundreds or thousands of permutations may be
-  required to say whether the model is above or below the threshold
-\item
-  In the example, 1599 permutations were required
-\end{itemize}
-
-\tiny
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{perm}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-Permutation test for cca under reduced model
-Permutation: free
-Number of permutations: 999
-
-Model: cca(formula = varespec ~ N + P + K + Ca + Mg + S + Al + Fe + Mn + Zn + Mo + Baresoil + Humdepth + pH, data = varechem)
-         Df ChiSquare      F Pr(>F)  
-Model    14   1.44148 1.4441  0.041 *
-Residual  9   0.64171                
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-\end{verbatim}
-
-\normalsize
-
-\end{frame}
-
-\begin{frame}[fragile]{Permutation tests in vegan: \texttt{anova()}}
-
-\begin{itemize}
-\itemsep1pt\parskip0pt\parsep0pt
-\item
   \texttt{anova.cca()} has a number of arguments
 \end{itemize}
 
