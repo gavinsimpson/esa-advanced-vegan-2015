@@ -11,9 +11,11 @@
 \usepackage{fixltx2e} % provides \textsubscript
 % \usepackage{lmodern} kills bullets m theme
 % \ifxetex
-  \usepackage{fontspec,xltxtra,xunicode}
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-  \newcommand{\euro}{€}
+\usepackage{xltxtra,xunicode}
+%\usepackage{fontspec}
+%\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\defaultfontfeatures{Scale=MatchLowercase}
+%\newcommand{\euro}{€}
 % \else
 %   \ifluatex
 %     \usepackage{fontspec}
@@ -27,7 +29,7 @@
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
-\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+%\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -70,6 +72,9 @@
 %   \frame{\subsectionpage}
 % }
 
+\usepackage[normalem]{ulem}
+% avoid problems with \sout in headers with hyperref:
+\pdfstringdefDisableCommands{\renewcommand{\sout}{}}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt plus 2pt minus 1pt}
 \setlength{\emergencystretch}{3em}  % prevent overfull lines
@@ -90,9 +95,9 @@
 \newcommand{\centreFigEnd}{\end{figure}}
 
 
-\title{A Brief Introduction to Vegan}
+\title{Advanced Community Data Analysis Using Vegan}
 \author{Gavin L. Simpson}
-\date{CSEE 2015 • May 20th 2015}
+\date{ESA 2015 • Aug 9th 2015}
 
 \begin{document}
 \frame{\titlepage}
@@ -432,11 +437,8 @@ Or with the formula interface use the \texttt{Condition()} function
 \begin{frame}[fragile]{Triplots}
 
 Triplots will generally produce a mess; we can really only display a
-couple of bits approximately anyway
-
-Trying to cram three things in is a recipe for a mess\ldots{}
-
-\ldots{}but we can do it
+couple of bits approximately anyway Trying to cram three things in is a
+recipe for a mess\ldots{} but we can do it
 
 \scriptsize
 
@@ -462,7 +464,7 @@ Trying to cram three things in is a recipe for a mess\ldots{}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{center}\includegraphics[width=0.5\linewidth]{advanced-vegan-slides_files/figure-beamer/triplot-2-1} \end{center}
+\begin{center}\includegraphics[width=0.55\linewidth]{advanced-vegan-slides_files/figure-beamer/triplot-2-1} \end{center}
 
 \normalsize
 
@@ -824,9 +826,12 @@ importance for the test to be valid
     \(Y = X + Z + \varepsilon\)
   \end{itemize}
 \item
-  In \textbf{vegan} which is used can be set via argument
-  \texttt{method} with \texttt{"direct"}, \texttt{"full"}, and
-  \texttt{"reduced"} respectively
+  In \textbf{vegan} which is used can be set via argument \texttt{model}
+  with \texttt{"direct"}, \sout{\texttt{"full"}}, and \texttt{"reduced"}
+  respectively
+\item
+  In current \textbf{vegan} option \texttt{method\ =\ "full"} is
+  disabled
 \end{itemize}
 
 \end{frame}

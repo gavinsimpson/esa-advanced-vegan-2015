@@ -1,7 +1,7 @@
 ---
-title: "A Brief Introduction to Vegan"
+title: "Advanced Community Data Analysis Using Vegan"
 author: Gavin L. Simpson
-date: CSEE 2015 • May 20th 2015
+date: ESA 2015 • Aug 9th 2015
 fontsize: 10pt
 classoption: "compress, aspectratio=169"
 bibliography: vegan-refs.bib
@@ -180,12 +180,7 @@ pcca <- cca(varespec ~ Ca + Condition(pH), data = varechem) ## easier!
 
 ## Triplots
 
-Triplots will generally produce a mess; we can really only display a couple of bits approximately anyway
-
-Trying to cram three things in is a recipe for a mess...
-
-...but we can do it
-
+Triplots will generally produce a mess; we can really only display a couple of bits approximately anyway Trying to cram three things in is a recipe for a mess... but we can do it
 
 \scriptsize
 ```{r triplot-1, fig.height = 5, crop.plot = TRUE, out.width = "0.5\\linewidth"}
@@ -196,7 +191,7 @@ plot(cca1)
 ## Triplots
 
 \scriptsize
-```{r triplot-2, fig.height = 5, crop.plot = TRUE, out.width = "0.5\\linewidth"}
+```{r triplot-2, fig.height = 6, crop.plot = TRUE, out.width = "0.55\\linewidth"}
 plot(cca1)
 ```
 \normalsize
@@ -355,7 +350,8 @@ What *is* shuffled and *how* is of **paramount** importance for the test to be v
  * With conditioning variables, two options are available, both of which *permute residuals* from model fits
      - The *full model* uses residuals from model $Y = X + Z + \varepsilon$
      - The *reduced model* uses residuals from model $Y = X + Z + \varepsilon$
- * In **vegan** which is used can be set via argument `method` with `"direct"`, `"full"`, and `"reduced"` respectively
+ * In **vegan** which is used can be set via argument `model` with `"direct"`, ~~`"full"`~~, and `"reduced"` respectively
+ * In current **vegan** option `method = "full"` is disabled
 
 ## Permutation tests in vegan
 

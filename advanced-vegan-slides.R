@@ -37,7 +37,7 @@ pcca <- cca(varespec ~ Ca + Condition(pH), data = varechem) ## easier!
 ## ----triplot-1, fig.height = 5, crop.plot = TRUE, out.width = "0.5\\linewidth"----
 plot(cca1)
 
-## ----triplot-2, fig.height = 5, crop.plot = TRUE, out.width = "0.5\\linewidth"----
+## ----triplot-2, fig.height = 6, crop.plot = TRUE, out.width = "0.55\\linewidth"----
 plot(cca1)
 
 ## ----cca-model-build1----------------------------------------------------

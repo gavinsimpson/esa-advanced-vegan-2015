@@ -19,9 +19,11 @@ $endif$
 \usepackage{fixltx2e} % provides \textsubscript
 % \usepackage{lmodern} kills bullets m theme
 % \ifxetex
-  \usepackage{fontspec,xltxtra,xunicode}
-  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
-  \newcommand{\euro}{€}
+\usepackage{xltxtra,xunicode}
+%\usepackage{fontspec}
+%\defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+\defaultfontfeatures{Scale=MatchLowercase}
+%\newcommand{\euro}{€}
 % \else
 %   \ifluatex
 %     \usepackage{fontspec}
@@ -38,7 +40,7 @@ $endif$
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 % use microtype if available
-\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
+%\IfFileExists{microtype.sty}{\usepackage{microtype}}{}
 $if(natbib)$
 \usepackage{natbib}
 \bibliographystyle{plainnat}
