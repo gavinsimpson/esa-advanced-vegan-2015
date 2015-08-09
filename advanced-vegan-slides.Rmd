@@ -406,7 +406,7 @@ A number of types of test can be envisaged
 
 The first is the default in `anova()`
 
-The other three can be selected via the argument `method`
+The other three can be selected via the argument `by`
 
 ## Permutation tests | testing canonical axes
 
